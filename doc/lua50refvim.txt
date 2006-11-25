@@ -2,7 +2,7 @@
                                 Vim version 6.0
 
 
-                                                   *luarefvim* *Lua-Reference*
+                                                      *luaref* *Lua-Reference*
                              Lua Reference for Vim
                            =========================
                                  Version 0.1.0
@@ -781,9 +781,9 @@ The general syntax for constructors is
 
 Each field of the form$[exp1] = exp2$adds to the new table an entry with
 key$exp1$and value$exp2$. A field of the form$name = exp$is equivalent to
-$["name"] = exp$. Finally, fields of the form$exp$are equivalent to$[i] =
-exp$, where$i$are consecutive numerical integers, starting with 1. Fields in
-the other formats do not affect this counting. For example,
+$["name"] = exp$. Finally, fields of the form$exp$are equivalent to
+$[i] = exp$, where$i$are consecutive numerical integers, starting with 1.
+Fields in the other formats do not affect this counting. For example,
 >
        a = {[f(1)] = g; "x", "y"; x = 1, f(x), [30] = 23; 45}
 >
@@ -1585,9 +1585,9 @@ is where the C function pushes its results to be returned to the caller (see
 For convenience, most query operations in the API do not follow a strict stack
 discipline. Instead, they can refer to any element in the stack by using
 an@index@: a positive index represents an@absolute@stack position (starting
-at&nbsp;1); a negative index represents an@offset@from the top of the stack.
-More specifically, if the stack has@n@elements, then index 1 represents the
-first element (that is, the element that was pushed onto the stack first) and
+at 1); a negative index represents an@offset@from the top of the stack. More
+specifically, if the stack has@n@elements, then index 1 represents the first
+element (that is, the element that was pushed onto the stack first) and
 index@n@represents the last element; index@-1@also represents the last element
 (that is, the element at the top) and index@-n@represents the first element.
 We say that an index is@valid@if it lies between 1 and the stack top (that is,
@@ -2089,7 +2089,7 @@ global variable, do
 >
 You can change the global environment of a Lua thread using$lua_replace$.
 
-                                            *lrv-lua_getfenv* *lrv-lua_setenv*
+                                           *lrv-lua_getfenv* *lrv-lua_setfenv*
 The following functions get and set the environment of Lua functions:
 >
        void lua_getfenv (lua_State *L, int index);
@@ -2485,7 +2485,7 @@ you can write
        lua_Debug ar;
        lua_pushstring(L, "f");
        lua_gettable(L, LUA_GLOBALSINDEX);  /* get global `f' */
-       lua_getinfo(L, ">S", &#038;ar);
+       lua_getinfo(L, ">S", &ar);
        printf("%d\n", ar.linedefined);
 >
                                                         *lrv-lua_Debug-fields*
@@ -2836,10 +2836,10 @@ will iterate over all key-value pairs of table$t$.
 $pcall (f, arg1, arg2, ...)$                                       *lrv-pcall*
 ----------------------------
 Calls function$f$with the given arguments in protected mode. That means that
-any error inside&nbsp;$f$is not propagated; instead,$pcall$catches the error
-and returns a status code. Its first result is the status code (a boolean),
-which is#true#if the call succeeds without errors. In such case,$pcall$also
-returns all results from the call, after this first result. In case of any
+any error inside$f$is not propagated; instead,$pcall$catches the error and
+returns a status code. Its first result is the status code (a boolean), which
+is#true#if the call succeeds without errors. In such case,$pcall$also returns
+all results from the call, after this first result. In case of any
 error,$pcall$returns#false#plus the error message.
 
 $print (e1, e2, ...)$                                              *lrv-print*
@@ -3934,7 +3934,7 @@ SOFTWARE.
 
 
 ==============================================================================
-C  LUAREFVIM DOC                                          *lrv-help* *lrv-doc*
+C  LUAREFVIM DOC               *luarefvim* *luarefvimdoc* *lrv-help* *lrv-doc*
 ==============================================================================
 
 
